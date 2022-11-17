@@ -1,6 +1,9 @@
 ﻿#include <iostream>
 #include <string>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctime>
 #include "HashTable.h"
 #include "HSubject.h"
 using namespace std;
@@ -50,12 +53,27 @@ using namespace std;
 
 int main()
 {
+	//srand((unsigned)time(0));
+	//int randomNumber;
 	intHash HT(7);
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		int x = rand() % 100;
 		HT.add(x, x);
-		HT.print();
-		cout << endl;
+		//HT.print();
+		//cout << endl;
 	}
+	HT.print();
+	cout << endl;
+
+	HT.remove(41);
+	HT.print();
+	cout << endl;
+
+	int yosi = 99;
+	int beni = 7;
+	HT.add(yosi, beni);
+	HT.print();
+
+	cout << endl;
 }

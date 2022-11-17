@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <algorithm>
+#include <list>
 #include <string>
 #include <math.h>
 using namespace std;
@@ -19,10 +21,9 @@ protected:
 		U data;
 		V key;
 		state flag;
-		Item() {}
+		Item() { flag = empty; }
 		Item(U d, V  k, state f) { data = d; key = k; flag = f; }
 	};
-
 
 	int size;
 	Item<T, K>* arr;
@@ -62,13 +63,13 @@ template<typename T, typename K>
 inline HashTable<T, K>::HashTable(int m)
 {
 	if (prime(m)) {
-		arr = new Item[m];
+		arr = new Item<T, K>[m];
 	}
 	else {
 		do {
 			m += 1;
 		} while (!prime(m));
-		arr = new Item[m];
+		arr = new Item<T, K>[m];
 	}
 	size = m;
 }
@@ -125,16 +126,43 @@ inline bool HashTable<T, K>::remove(K key)
 template <class T, class K>
 void HashTable<T, K>::print()
 {
+
 	for (int i = 0; i < size; i++)
 		if (arr[i].flag == full)
 			cout << i << ": " << arr[i].data << endl;
 		else
 			cout << i << ": " << (arr[i].flag == empty ? "empty" : "deleted") << endl;
+	//Item<T, K>* arr1 = new Item<T, K>[size];
+	//list<int> toList;
+	//for (int i = 0; i < size; i++)
+	//{
+	//	toList.push_front((int)(arr[i].data));
+	//}
+	//toList.sort();
 
+	
+	//for (int i = 0; i < toList.size(); i++)
+	//{
+	//	cout << toList.pop_front();
+	//}
+	//list<int>::iterator it;
+	////for_each(toList.begin(), toList.end(), [](T) {
+	////	cout << T;
+	////	});
+	//for (it = toList.begin(); it != toList.end(); it++)
+	//{
+	//	cout << (*it);
+	//}
+	//for each (auto var in toList)
+	//{
+	//	cout << var;
+	//}
+	//int *arr = new int[8];
 }
 
 
-class intHash :public HashTable<int, int>
+
+class intHash :public HashTable<int,int>
 {
 public:
 	intHash(int size) :HashTable(size) {}
@@ -146,5 +174,4 @@ public:
 	{
 		return key % (size - 1) + 1;
 	}
-
 };
