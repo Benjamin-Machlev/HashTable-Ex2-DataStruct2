@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
-#include <string>
 #include <list>
+#include <string>
+#include <algorithm>
 using namespace std;
 #include "HashTable.h"
 
@@ -28,14 +29,15 @@ void HSubject::printS(string ky)
 {
 
 	for (int i = 0; i < size; i++) {
-		if (ky == arr[i].key) {
-			cout << arr[i].data.size() << endl;
+		if (ky == arr[i].key && arr[i].flag == full) {
+			cout << "Subject " << arr[i].key << " " << arr[i].data.size() << " topics:" << endl;
 			for_each(arr[i].data.begin(), arr[i].data.end(), [](string a) {
-				cout << a;
+				cout << a << " ";
 				});
 			return;
 		}
 	}
+	cout << "ERROR\n";
 
 }
 
@@ -44,14 +46,14 @@ void HSubject::printN(string ky, int N)
 {
 	int index = search(ky);
 	if (index == -1) {
-		cout << "the object not found\n";
+		cout << "ERROR\n";
 	}
 	else {
-		for_each(arr[index].data.begin(), arr[index].data.end(), [](int N, string a) {
+		for_each(arr[index].data.begin(), arr[index].data.end(), [&](string a) {
 			if (N == 0) {
 				return;
 			}
-			cout << a;
+			cout << a << " ";
 			N--;
 			});
 	}
@@ -60,26 +62,37 @@ void HSubject::printN(string ky, int N)
 
 void HSubject::print()
 {
+	int index;
 	list<string> a;
 	for (int i = 0; i < size; i++) {
-		a.push_back(arr[i].key);
+
+		if (arr[i].flag == full) {
+			a.push_back(arr[i].key);
+		}
 	}
 	a.sort();
-	for_each(a.begin(), a.end(), [](string a) {cout << a; });
+	cout << "All subjects and titles:\n";
+	for_each(a.begin(), a.end(), [&](string a) {
+		cout << a << ":";
+		index = search(a);
+		for_each(arr[index].data.begin(), arr[index].data.end(), [](string b) {cout << b << " "; });
+		cout << "\n";
+		});
 }
 
 void HSubject::startNewTable()
 {
-	delete[] arr;
+	for (int i = 0; i < size; i++) {
+		arr[i].flag = empty;
+	}
 }
 
 void HSubject::addSubjectAndTitle(string s, string t)
 {
 	int index = search(s);
 	if (index == -1) {
-		add(s, t);
+		add(s);
+		index = search(s);
 	}
-	else {
-		arr[index].data.push_front(t);
-	}
+	arr[index].data.push_front(t);
 }

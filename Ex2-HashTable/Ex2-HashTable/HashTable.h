@@ -1,22 +1,16 @@
 #pragma once
 #include <iostream>
-#include <algorithm>
-#include <list>
-#include <string>
-#include <math.h>
 using namespace std;
 
 
 
 template <typename T, typename K>
-class HashTable
-{
+class HashTable {
 protected:
 
 	enum state { empty, full, deleted };
 	template <typename U, typename V>
-	class Item
-	{
+	class Item {
 	public:
 		U data;
 		V key;
@@ -25,7 +19,7 @@ protected:
 		Item(U d, V  k, state f) { data = d; key = k; flag = f; }
 	};
 
-	int size ;
+	int size;
 	Item<T, K>* arr;
 	bool prime(int n);
 	int hash(K key, int i);
@@ -34,18 +28,9 @@ protected:
 public:
 	HashTable(int m = 10);
 	~HashTable() { delete[] arr; }
-	void add(K& key, T& dat);
+	void add(K& key);
 	bool remove(K key);
 	int search(K key);
-	T* entryData(K i)
-	{
-		int ind = search(i);
-		if (ind == -1)
-			return NULL;
-		else
-			return &(arr[ind].data);
-	}
-	void print();
 };
 
 template<typename T, typename K>
@@ -81,18 +66,16 @@ inline int HashTable<T, K>::hash(K key, int i)
 }
 
 template<typename T, typename K>
-inline void HashTable<T, K>::add(K& key, T& dat)
+void HashTable<T, K>::add(K& key)
 {
 	for (int i = 0; i < size; i++) {
 		int index = hash(key, i);
 		if (arr[index].flag != full) {
-			arr[index].data = dat;
 			arr[index].key = key;
 			arr[index].flag = full;
 			return;
 		}
 	}
-	throw "arr overflow";
 }
 
 template<typename T, typename K>
@@ -123,29 +106,3 @@ inline bool HashTable<T, K>::remove(K key)
 	}
 }
 
-template <class T, class K>
-void HashTable<T, K>::print()
-{
-
-	for (int i = 0; i < size; i++)
-		if (arr[i].flag == full)
-			cout << i << ": " << arr[i].data << endl;
-		else
-			cout << i << ": " << (arr[i].flag == empty ? "empty" : "deleted") << endl;
-}
-
-
-
-//class intHash :public HashTable<int,int>
-//{
-//public:
-//	intHash(int size) :HashTable(size) {}
-//	int h1(int key)
-//	{
-//		return key % size;
-//	}
-//	int h2(int key)
-//	{
-//		return key % (size - 1) + 1;
-//	}
-//};
