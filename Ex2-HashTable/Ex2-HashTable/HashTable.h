@@ -25,7 +25,7 @@ protected:
 		Item(U d, V  k, state f) { data = d; key = k; flag = f; }
 	};
 
-	int size;
+	int size ;
 	Item<T, K>* arr;
 	bool prime(int n);
 	int hash(K key, int i);
@@ -132,46 +132,20 @@ void HashTable<T, K>::print()
 			cout << i << ": " << arr[i].data << endl;
 		else
 			cout << i << ": " << (arr[i].flag == empty ? "empty" : "deleted") << endl;
-	//Item<T, K>* arr1 = new Item<T, K>[size];
-	//list<int> toList;
-	//for (int i = 0; i < size; i++)
-	//{
-	//	toList.push_front((int)(arr[i].data));
-	//}
-	//toList.sort();
-
-	
-	//for (int i = 0; i < toList.size(); i++)
-	//{
-	//	cout << toList.pop_front();
-	//}
-	//list<int>::iterator it;
-	////for_each(toList.begin(), toList.end(), [](T) {
-	////	cout << T;
-	////	});
-	//for (it = toList.begin(); it != toList.end(); it++)
-	//{
-	//	cout << (*it);
-	//}
-	//for each (auto var in toList)
-	//{
-	//	cout << var;
-	//}
-	//int *arr = new int[8];
 }
 
 
 
-class intHash :public HashTable<int,int>
-{
-public:
-	intHash(int size) :HashTable(size) {}
-	int h1(int key)
-	{
-		return key % size;
-	}
-	int h2(int key)
-	{
-		return key % (size - 1) + 1;
-	}
-};
+//class intHash :public HashTable<int,int>
+//{
+//public:
+//	intHash(int size) :HashTable(size) {}
+//	int h1(int key)
+//	{
+//		return key % size;
+//	}
+//	int h2(int key)
+//	{
+//		return key % (size - 1) + 1;
+//	}
+//};
