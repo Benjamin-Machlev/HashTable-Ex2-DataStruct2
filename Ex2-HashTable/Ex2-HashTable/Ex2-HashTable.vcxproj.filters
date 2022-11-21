@@ -18,6 +18,9 @@
     <ClCompile Include="Ex2-HashTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HSubject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HSubject.h">
