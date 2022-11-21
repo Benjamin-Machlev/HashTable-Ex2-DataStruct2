@@ -1,4 +1,9 @@
-﻿#include <iostream>
+﻿/*
+Name_1: Binyamin Machlev, ID: 205838881
+Name_2: Yosef Baruch Chakim, ID: 315853341
+Course: Data Struct 2 - Ex2 - Hash Table
+*/
+#include <iostream>
 #include "HSubject.h"
 using namespace std;
 
@@ -15,7 +20,7 @@ int main()
 	cout << "a: Add a subject and a title" << endl;
 	cout << "d: Del a subject " << endl;
 	cout << "t: print all titles of the subject " << endl;
-	cout << "s: print N first appearances of a subect " << endl;
+	cout << "s: print N first appearances of a subject " << endl;
 	cout << "p: print all non-empty entries " << endl;
 	cout << "e: Exit" << endl;
 	do {
@@ -42,4 +47,3 @@ int main()
 	} while (ch != 'e');
 	return 0;
 }
-

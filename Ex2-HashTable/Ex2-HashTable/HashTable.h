@@ -2,12 +2,9 @@
 #include <iostream>
 using namespace std;
 
-
-
 template <typename T, typename K>
 class HashTable {
 protected:
-
 	enum state { empty, full, deleted };
 	template <typename U, typename V>
 	class Item {
@@ -33,6 +30,13 @@ public:
 	int search(K key);
 };
 
+/// <summary>
+/// calculate if prime number or not
+/// </summary>
+/// <typeparam name="T"></typeparam>
+/// <typeparam name="K"></typeparam>
+/// <param name="n"></param>
+/// <returns></returns>
 template<typename T, typename K>
 inline bool HashTable<T, K>::prime(int n)
 {
@@ -44,6 +48,12 @@ inline bool HashTable<T, K>::prime(int n)
 	return true;
 }
 
+/// <summary>
+/// Generates an array with the size of a prime number close to the received parameter
+/// </summary>
+/// <typeparam name="T"></typeparam>
+/// <typeparam name="K"></typeparam>
+/// <param name="m"></param>
 template<typename T, typename K>
 inline HashTable<T, K>::HashTable(int m)
 {
@@ -59,12 +69,27 @@ inline HashTable<T, K>::HashTable(int m)
 	size = m;
 }
 
+/// <summary>
+/// Generates the index to the array
+/// </summary>
+/// <typeparam name="T"></typeparam>
+/// <typeparam name="K"></typeparam>
+/// <param name="key"></param>
+/// <param name="i"></param>
+/// <returns></returns>
 template<typename T, typename K>
 inline int HashTable<T, K>::hash(K key, int i)
 {
 	return (h1(key) + i * h2(key)) % size;
 }
 
+
+/// <summary>
+/// add the key to array
+/// </summary>
+/// <typeparam name="T"></typeparam>
+/// <typeparam name="K"></typeparam>
+/// <param name="key"></param>
 template<typename T, typename K>
 void HashTable<T, K>::add(K& key)
 {
@@ -78,6 +103,13 @@ void HashTable<T, K>::add(K& key)
 	}
 }
 
+/// <summary>
+/// search the key in the table
+/// </summary>
+/// <typeparam name="T"></typeparam>
+/// <typeparam name="K"></typeparam>
+/// <param name="key"></param>
+/// <returns></returns>
 template<typename T, typename K>
 inline int HashTable<T, K>::search(K key)
 {
@@ -93,6 +125,13 @@ inline int HashTable<T, K>::search(K key)
 	return -1;
 }
 
+/// <summary>
+/// remove the key from the table
+/// </summary>
+/// <typeparam name="T"></typeparam>
+/// <typeparam name="K"></typeparam>
+/// <param name="key"></param>
+/// <returns>return if the delete success</returns>
 template<typename T, typename K>
 inline bool HashTable<T, K>::remove(K key)
 {
@@ -105,4 +144,3 @@ inline bool HashTable<T, K>::remove(K key)
 		return true;
 	}
 }
-

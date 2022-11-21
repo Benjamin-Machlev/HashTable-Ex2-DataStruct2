@@ -3,12 +3,10 @@
 #include <list>
 #include <string>
 #include <algorithm>
-using namespace std;
 #include "HashTable.h"
+using namespace std;
 
 const int MAX = 1000;
-
-
 
 class HSubject :public HashTable<list<string>, string> {
 private:
@@ -25,9 +23,12 @@ public:
 	void addSubjectAndTitle(string s, string t);
 };
 
+/// <summary>
+/// print the sub subject
+/// </summary>
+/// <param name="ky"></param>
 void HSubject::printS(string ky)
 {
-
 	for (int i = 0; i < size; i++) {
 		if (ky == arr[i].key && arr[i].flag == full) {
 			cout << "Subject " << arr[i].key << " " << arr[i].data.size() << " topics:" << endl;
@@ -38,10 +39,13 @@ void HSubject::printS(string ky)
 		}
 	}
 	cout << "ERROR\n";
-
 }
 
-
+/// <summary>
+/// print the N subject
+/// </summary>
+/// <param name="ky"></param>
+/// <param name="N"></param>
 void HSubject::printN(string ky, int N)
 {
 	int index = search(ky);
@@ -57,9 +61,11 @@ void HSubject::printN(string ky, int N)
 			N--;
 			});
 	}
-
 }
 
+/// <summary>
+/// print the all subject and topics
+/// </summary>
 void HSubject::print()
 {
 	int index;
@@ -80,6 +86,9 @@ void HSubject::print()
 		});
 }
 
+/// <summary>
+/// start a new table
+/// </summary>
 void HSubject::startNewTable()
 {
 	for (int i = 0; i < size; i++) {
@@ -87,6 +96,11 @@ void HSubject::startNewTable()
 	}
 }
 
+/// <summary>
+/// adds a tile to subject
+/// </summary>
+/// <param name="s"></param>
+/// <param name="t"></param>
 void HSubject::addSubjectAndTitle(string s, string t)
 {
 	int index = search(s);
